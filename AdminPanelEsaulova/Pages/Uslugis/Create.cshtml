@@ -1,0 +1,63 @@
+﻿@page
+@model AdminPanelEsaulova.Pages.Uslugis.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Добавление новой услуги</h2>
+<hr />
+<form method="post">
+    <div>
+        <h3>Название</h3>
+        <div>
+            <input asp-for="Usluga.Name" style="width:100%;" />
+            <span asp-validation-for="Usluga.Name"></span>
+        </div>
+    </div>
+    <div>
+        <h3>Описание</h3>
+        <div>
+            <textarea id="editor1" asp-for="Usluga.Opisanie"></textarea>
+            <span asp-validation-for="Usluga.Opisanie"></span>
+        </div>
+    </div>
+    <div>
+        <br />
+        <h3>Поместить в разделы:</h3>
+        <div>
+            <label><input asp-for="Usluga.UgolovDela" type="checkbox" value="true" /> Уголовные дела</label>
+            <label><input asp-for="Usluga.GrajdanDela" type="checkbox" value="true" /> Гражданские дела</label>
+            <label><input asp-for="Usluga.EkonomDela" type="checkbox" value="true" /> Экономические дела</label>
+            <span asp-validation-for="Usluga.UgolovDela"></span>
+            <span asp-validation-for="Usluga.GrajdanDela"></span>
+            <span asp-validation-for="Usluga.EkonomDela"></span>
+        </div>
+    </div>
+    <div>
+        <h3>Видимость на главной</h3>
+        <div>
+            <select asp-for="Usluga.TopUsl" class="form-control">
+                <option value="">-- Select Gender --</option>
+                <option value="true">Отображать</option>
+                <option value="false">Скрыть</option>
+            </select>
+            <span asp-validation-for="Usluga.TopUsl"></span>
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>
+<div>
+    <a asp-page="EmployeeIndex">Back to List</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/ckeditor/ckeditor.js" asp-append-version="true"></script>
+    <script>
+            $(function () {
+                CKEDITOR.replace('editor1');
+            });
+    </script>
+}
+
